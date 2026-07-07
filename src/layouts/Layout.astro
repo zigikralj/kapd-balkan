@@ -1,19 +1,24 @@
 ---
 import '../styles/global.css';
+import { translations } from '../utils/translations.js';
 
 interface Props {
 	title?: string;
 	description?: string;
+	lang?: 'sr' | 'en';
 }
 
 const { 
-	title = "Краљевско академско природњачко друштво Балкан", 
-	description = "Краљевско академско природњачко друштво Балкан (КАПД Балкан) - научно и стручно друштво основано у Краљеву."
+	lang = 'sr',
+	title = translations[lang].title, 
+	description = translations[lang].description
 } = Astro.props;
+
+const t = translations[lang];
 ---
 
 <!DOCTYPE html>
-<html lang="sr">
+<html lang={lang}>
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -21,8 +26,8 @@ const {
 		<!-- SEO Meta Tags -->
 		<title>{title}</title>
 		<meta name="description" content={description} />
-		<meta name="keywords" content="КАПД Балкан, Краљевско академско природњачко друштво, Краљево, Натура 2000, биологија, екологија, заштита природе, Србија" />
-		<meta name="author" content="КАПД Балкан" />
+		<meta name="keywords" content={t.keywords} />
+		<meta name="author" content={t.title} />
 		
 		<!-- Open Graph / Facebook -->
 		<meta property="og:type" content="website" />

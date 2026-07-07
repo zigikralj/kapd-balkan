@@ -1,0 +1,402 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { translations } from '../utils/translations.js';
+
+interface Props {
+  lang?: 'sr' | 'en';
+}
+
+const { lang = 'sr' } = Astro.props;
+const t = translations[lang];
+
+// Leaf particle configs (pre-defined for consistency across static builds)
+const leaves = [
+  { left: 8, delay: 0.2, duration: 9, size: 16 },
+  { left: 22, delay: 2.1, duration: 12, size: 24 },
+  { left: 38, delay: 4.3, duration: 10, size: 18 },
+  { left: 52, delay: 0.8, duration: 13, size: 28 },
+  { left: 68, delay: 5.2, duration: 8, size: 14 },
+  { left: 82, delay: 3.1, duration: 11, size: 22 },
+  { left: 94, delay: 1.4, duration: 14, size: 20 },
+  { left: 15, delay: 6.2, duration: 11, size: 15 },
+  { left: 30, delay: 0.1, duration: 9, size: 26 },
+  { left: 45, delay: 3.4, duration: 12, size: 18 },
+  { left: 60, delay: 2.3, duration: 9, size: 22 },
+  { left: 75, delay: 6.7, duration: 13, size: 16 },
+  { left: 88, delay: 4.6, duration: 10, size: 20 },
+];
+
+const aboutImages = [
+  { id: "biblioteka_1", url: `${import.meta.env.BASE_URL}biblioteka_1.jpg`, width: 800, height: 600, alt: t.about.images[0].alt },
+  { id: "deca_2", url: `${import.meta.env.BASE_URL}deca_2.jpg`, width: 918, height: 1386, alt: t.about.images[1].alt },
+  { id: "deca_3", url: `${import.meta.env.BASE_URL}deca_3.jpg`, width: 960, height: 720, alt: t.about.images[2].alt }
+];
+
+const collaborators = [
+  { id: "srbijasume", url: `${import.meta.env.BASE_URL}Srbijasume.png`, width: 194, height: 128, link: "https://srbijasume.rs/", caption: t.collaborators.partners.srbijasume },
+  { id: "VSI_KV", url: `${import.meta.env.BASE_URL}VSI_KV.jpg`, width: 173, height: 44, link: "http://www.vsikv.com", caption: t.collaborators.partners.VSI_KV },
+  { id: "NP_Djerdap", url: `${import.meta.env.BASE_URL}NP_Djerdap.svg`, width: 158, height: 146, link: "https://npdjerdap.rs/", caption: t.collaborators.partners.NP_Djerdap },
+  { id: "biblioteka_kv", url: `${import.meta.env.BASE_URL}biblioteka_kv.jpg`, width: 235, height: 55, link: "http://www.kv-biblio.org.rs", caption: t.collaborators.partners.biblioteka_kv },
+  { id: "sumarska_kv", url: `${import.meta.env.BASE_URL}sumarska_kv.png`, width: 238, height: 48, link: "http://www.sumarska.edu.rs", caption: t.collaborators.partners.sumarska_kv },
+  { id: "poljoprivredna_kv", url: `${import.meta.env.BASE_URL}poljoprivredna_kv.png`, width: 114, height: 131, link: "http://www.ratarica.edu.rs", caption: t.collaborators.partners.poljoprivredna_kv },
+  { id: "pmf_kg", url: `${import.meta.env.BASE_URL}pmf_kg.gif`, width: 283, height: 60, link: "https://ibe.pmf.kg.ac.rs/", caption: t.collaborators.partners.pmf_kg },
+  { id: "sbd_stevan_jakovljevic", url: `${import.meta.env.BASE_URL}SBD_Stevan_Jakovljevic.png`, width: 133, height: 134, link: "https://www.facebook.com/SBDKragujevac/?locale=sr_RS", caption: t.collaborators.partners.sbd_stevan_jakovljevic },
+  { id: "eid_mladen_karaman", url: `${import.meta.env.BASE_URL}eid_mladen_karaman.jpg`, width: 123, height: 138, link: "https://www.facebook.com/eidmladenkaraman/?locale=sr_RS", caption: t.collaborators.partners.eid_mladen_karaman }
+];
+---
+
+<Layout lang={lang}>
+	<main class="page-main">
+		<!-- Sticky Header Navigation -->
+		<header>
+			<a href="#about-us">{t.nav.about}</a>
+			<a href="#natura-2000">{t.nav.natura}</a>
+			<a href="#collaborators">{t.nav.collaborators}</a>
+			<a href="#contact">{t.nav.contact}</a>
+			<!-- Language Dropdown -->
+			<div class="lang-dropdown">
+				<button class="lang-dropdown-trigger" aria-label="Изаберите језик / Select language">
+					{lang === 'sr' ? (
+						<>
+							<svg class="flag-icon" viewBox="0 0 3 2" xmlns="http://www.w3.org/2000/svg">
+								<rect width="3" height="0.667" fill="#C6363C"/>
+								<rect y="0.667" width="3" height="0.667" fill="#0C4076"/>
+								<rect y="1.333" width="3" height="0.667" fill="#FFFFFF"/>
+							</svg>
+							<span>Srpski</span>
+						</>
+					) : (
+						<>
+							<svg class="flag-icon" viewBox="0 0 60 30" xmlns="http://www.w3.org/2000/svg">
+								<clipPath id="s-trig">
+									<path d="M0,0 v30 h60 v-30 z"/>
+								</clipPath>
+								<path d="M0,0 v30 h60 v-30 z" fill="#012169"/>
+								<path d="M0,0 L60,30 M60,0 L0,30" stroke="#fff" stroke-width="6"/>
+								<path d="M0,0 L60,30 M60,0 L0,30" stroke="#C8102E" stroke-width="4" clip-path="url(#s-trig)"/>
+								<path d="M30,0 v30 M0,15 h60" stroke="#fff" stroke-width="10"/>
+								<path d="M30,0 v30 M0,15 h60" stroke="#C8102E" stroke-width="6"/>
+							</svg>
+							<span>English</span>
+						</>
+					)}
+					<svg class="dropdown-arrow" viewBox="0 0 24 24" width="16" height="16" xmlns="http://www.w3.org/2000/svg">
+						<path d="M7 10l5 5 5-5z" fill="currentColor"/>
+					</svg>
+				</button>
+				<div class="lang-dropdown-menu">
+					<a href={`${import.meta.env.BASE_URL}`} class={`lang-dropdown-item ${lang === 'sr' ? 'active' : ''}`}>
+						<svg class="flag-icon" viewBox="0 0 3 2" xmlns="http://www.w3.org/2000/svg">
+							<rect width="3" height="0.667" fill="#C6363C"/>
+							<rect y="0.667" width="3" height="0.667" fill="#0C4076"/>
+							<rect y="1.333" width="3" height="0.667" fill="#FFFFFF"/>
+						</svg>
+						<span>Srpski</span>
+					</a>
+					<a href={`${import.meta.env.BASE_URL}en/`} class={`lang-dropdown-item ${lang === 'en' ? 'active' : ''}`}>
+						<svg class="flag-icon" viewBox="0 0 60 30" xmlns="http://www.w3.org/2000/svg">
+							<clipPath id="s-opt">
+								<path d="M0,0 v30 h60 v-30 z"/>
+							</clipPath>
+							<path d="M0,0 v30 h60 v-30 z" fill="#012169"/>
+							<path d="M0,0 L60,30 M60,0 L0,30" stroke="#fff" stroke-width="6"/>
+							<path d="M0,0 L60,30 M60,0 L0,30" stroke="#C8102E" stroke-width="4" clip-path="url(#s-opt)"/>
+							<path d="M30,0 v30 M0,15 h60" stroke="#fff" stroke-width="10"/>
+							<path d="M30,0 v30 M0,15 h60" stroke="#C8102E" stroke-width="6"/>
+						</svg>
+						<span>English</span>
+					</a>
+				</div>
+			</div>
+		</header>
+
+		<!-- Nature-themed Hero Banner -->
+		<div class="hero-container" id="heroBanner" style={`background-image: url('${import.meta.env.BASE_URL}trees.jpg');`}>
+			<div class="hero-overlay"></div>
+			
+			<!-- Leaf Particles -->
+			{leaves.map((leaf) => (
+				<div 
+					class="leaf" 
+					style={`left: ${leaf.left}%; animation-delay: ${leaf.delay}s; animation-duration: ${leaf.duration}s; width: ${leaf.size}px; height: ${leaf.size}px;`}
+				/>
+			))}
+
+			<!-- Glassmorphic Card containing branding -->
+			<div class="glass-card">
+				<div class="hero-logo-wrapper">
+					<img 
+						class="hero-logo" 
+						src={`${import.meta.env.BASE_URL}logo.png`} 
+						alt="КАПД Балкан Лого" 
+						width="390" 
+						height="184" 
+					/>
+				</div>
+			</div>
+
+			<!-- Bouncing Scroll Down Arrow -->
+			<a href="#about-us" class="scroll-indicator" aria-label={t.hero.scrollAria}>
+				<span class="scroll-text">{t.hero.explore}</span>
+				<svg class="scroll-arrow" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+					<polyline points="6 9 12 15 18 9"></polyline>
+				</svg>
+			</a>
+		</div>
+
+		<!-- Main Content Container -->
+		<div class="main-content-container">
+			
+			<!-- About Us Section -->
+			<section id="about-us">
+				<div class="section-content">
+					<h2>{t.about.title}</h2>
+					<p>{t.about.text}</p>
+
+					<div class="gallery-grid">
+						{aboutImages.map((img) => (
+							<img 
+								class="gallery-image" 
+								src={img.url} 
+								alt={img.alt} 
+								width={img.width} 
+								height={img.height} 
+								loading="lazy" 
+							/>
+						))}
+					</div>
+				</div>
+			</section>
+
+			<!-- Natura 2000 Section -->
+			<section id="natura-2000">
+				<div class="section-content">
+					<h2>{t.natura.title}</h2>
+					<p>{t.natura.text}</p>
+
+					<div class="gallery-grid" style="justify-content: center;">
+						<img 
+							class="banner-image" 
+							src={`${import.meta.env.BASE_URL}Natura_2.jpg`} 
+							alt={t.natura.imageAlt} 
+							width="1320" 
+							height="579" 
+							loading="lazy" 
+						/>
+					</div>
+				</div>
+			</section>
+
+			<!-- Collaborators Section -->
+			<section id="collaborators">
+				<div class="section-content">
+					<h2>{t.collaborators.title}</h2>
+					<p>{t.collaborators.text}</p>
+
+					<div class="collaborators-container">
+						{collaborators.map((partner) => (
+							<div class="collaborator-card">
+								<h4>{partner.caption}</h4>
+								<a href={partner.link} target="_blank" rel="noopener noreferrer">
+									<img 
+										class="collaborator-logo" 
+										src={partner.url} 
+										alt={partner.caption} 
+										width={partner.width} 
+										height={partner.height} 
+										loading="lazy" 
+									/>
+								</a>
+							</div>
+						))}
+					</div>
+				</div>
+			</section>
+
+			<!-- Social Media Section -->
+			<section id="social-media">
+				<div class="section-content">
+					<h2>{t.social.title}</h2>
+					
+					<div class="social-embeds-container">
+						<!-- YouTube Uploads Embed -->
+						<div class="iframe-wrapper">
+							<iframe 
+								class="iframe" 
+								src="https://www.youtube.com/embed/?listType=user_uploads&list=kapdbalkan" 
+								title="Balkan YouTube Channel" 
+								allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+								referrerpolicy="strict-origin-when-cross-origin" 
+								allowfullscreen
+							></iframe>
+						</div>
+
+						<!-- Facebook Page Embed -->
+						<div class="fb-iframe-wrapper">
+							<iframe 
+								class="iframe" 
+								src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fkapdbalkankv&tabs=timeline&width=500&height=500&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId=250907958354610" 
+								title="Balkan Facebook Page"
+								allowfullscreen
+							></iframe>
+						</div>
+					</div>
+				</div>
+			</section>
+
+		</div>
+
+		<!-- Footer Contact Information -->
+		<div id="contact" class="main-contact-container">
+			<div class="contact-container">
+				<p>
+					{t.contact.phone} <a href="tel:+381641688141">064 1688141</a>
+				</p>
+				<p>
+					{t.contact.email} <a href="mailto:kapdbalkan@gmail.com">kapdbalkan@gmail.com</a>
+				</p>
+				<p>
+					{t.contact.addressLabel} {t.contact.addressValue}
+				</p>
+			</div>
+
+			<!-- Copyright Footer -->
+			<div class="footer-copyright">
+				&copy; {new Date().getFullYear()} {t.contact.copyright} <a href="https://zigicode.com" target="_blank" rel="noopener noreferrer">Zigi Code</a>
+			</div>
+
+			<!-- Mobile Drawer Phone Widget -->
+			<div class="floating-contact" id="floatingContact">
+				<img 
+					class="phone" 
+					src={`${import.meta.env.BASE_URL}phone.svg`} 
+					alt={t.contact.floatingPhone} 
+					width="512" 
+					height="512" 
+					id="phoneIcon" 
+				/>
+				<div>
+					<a href="tel:+381641688141"><u>064 1688141</u></a>
+				</div>
+			</div>
+		</div>
+
+		<!-- Lightbox Gallery Modal -->
+		<div id="lightbox" class="lightbox-modal" role="dialog" aria-label={t.lightbox.ariaLabel} aria-hidden="true">
+			<button class="lightbox-close" id="lightboxClose" aria-label={t.lightbox.close}>&times;</button>
+			<button class="lightbox-arrow lightbox-arrow-left" id="lightboxPrev" aria-label={t.lightbox.prev}>&#10094;</button>
+			<div class="lightbox-content-wrapper">
+				<img id="lightboxImg" src="" alt="" class="lightbox-img" />
+				<div id="lightboxCaption" class="lightbox-caption"></div>
+			</div>
+			<button class="lightbox-arrow lightbox-arrow-right" id="lightboxNext" aria-label={t.lightbox.next}>&#10095;</button>
+		</div>
+	</main>
+</Layout>
+
+<!-- Client-side Interactive Animations Script -->
+<script>
+	// 3D Parallax forest movement based on cursor
+	const hero = document.getElementById('heroBanner');
+	if (hero && window.innerWidth > 768) {
+		window.addEventListener('mousemove', (e) => {
+			const x = (window.innerWidth / 2 - e.clientX) / 45;
+			const y = (window.innerHeight / 2 - e.clientY) / 45;
+			hero.style.backgroundPosition = `calc(50% + ${x}px) calc(50% + ${y}px)`;
+		});
+	}
+
+	// Mobile Floating Contact Widget Drawer Toggle
+	const floatingContact = document.getElementById('floatingContact');
+	const phoneIcon = document.getElementById('phoneIcon');
+	if (floatingContact && phoneIcon) {
+		phoneIcon.addEventListener('click', (e) => {
+			e.stopPropagation();
+			floatingContact.classList.toggle('open');
+		});
+
+		// Auto-close widget when clicking anywhere else
+		document.addEventListener('click', (e) => {
+			if (e.target && !floatingContact.contains(e.target as Node)) {
+				floatingContact.classList.remove('open');
+			}
+		});
+	}
+
+	// Gallery Lightbox Functionality
+	const lightbox = document.getElementById('lightbox');
+	const lightboxImg = document.getElementById('lightboxImg') as HTMLImageElement;
+	const lightboxCaption = document.getElementById('lightboxCaption');
+	const lightboxClose = document.getElementById('lightboxClose');
+	const lightboxPrev = document.getElementById('lightboxPrev');
+	const lightboxNext = document.getElementById('lightboxNext');
+
+	if (lightbox && lightboxImg && lightboxCaption && lightboxClose && lightboxPrev && lightboxNext) {
+		// Select only gallery-relevant pictures
+		const images = Array.from(document.querySelectorAll('#about-us .gallery-image, #natura-2000 .banner-image')) as HTMLImageElement[];
+		let currentIndex = 0;
+
+		const openLightbox = (index: number) => {
+			currentIndex = index;
+			const img = images[currentIndex];
+			lightboxImg.src = img.src;
+			lightboxImg.alt = img.alt;
+			lightboxCaption.textContent = img.alt || '';
+			lightbox.classList.add('active');
+			lightbox.setAttribute('aria-hidden', 'false');
+			document.body.style.overflow = 'hidden'; // Lock background scrolling
+		};
+
+		const closeLightbox = () => {
+			lightbox.classList.remove('active');
+			lightbox.setAttribute('aria-hidden', 'true');
+			document.body.style.overflow = ''; // Unlock background scrolling
+		};
+
+		const showNext = () => {
+			currentIndex = (currentIndex + 1) % images.length;
+			openLightbox(currentIndex);
+		};
+
+		const showPrev = () => {
+			currentIndex = (currentIndex - 1 + images.length) % images.length;
+			openLightbox(currentIndex);
+		};
+
+		// Attach click handlers to active gallery images
+		images.forEach((img, index) => {
+			img.style.cursor = 'pointer';
+			img.addEventListener('click', () => {
+				openLightbox(index);
+			});
+		});
+
+		// Control handlers
+		lightboxClose.addEventListener('click', closeLightbox);
+		
+		// Close by clicking backdrop
+		lightbox.addEventListener('click', (e) => {
+			if (e.target === lightbox || (e.target as HTMLElement).classList.contains('lightbox-content-wrapper')) {
+				closeLightbox();
+			}
+		});
+
+		lightboxNext.addEventListener('click', (e) => {
+			e.stopPropagation();
+			showNext();
+		});
+
+		lightboxPrev.addEventListener('click', (e) => {
+			e.stopPropagation();
+			showPrev();
+		});
+
+		// Keyboard event controls
+		document.addEventListener('keydown', (e) => {
+			if (!lightbox.classList.contains('active')) return;
+			if (e.key === 'Escape') closeLightbox();
+			if (e.key === 'ArrowRight') showNext();
+			if (e.key === 'ArrowLeft') showPrev();
+		});
+	}
+</script>
