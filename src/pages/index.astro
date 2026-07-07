@@ -19,21 +19,21 @@ const leaves = [
 ];
 
 const aboutImages = [
-  { id: "biblioteka_1", url: "/biblioteka_1.jpg", width: 800, height: 600, alt: "Едукативна радионица у библиотеци" },
-  { id: "deca_2", url: "/deca_2.jpg", width: 918, height: 1386, alt: "Активности са децом на Гочу" },
-  { id: "deca_3", url: "/deca_3.jpg", width: 960, height: 720, alt: "Теренски рад у заштићеном подручју" }
+  { id: "biblioteka_1", url: `${import.meta.env.BASE_URL}biblioteka_1.jpg`, width: 800, height: 600, alt: "Едукативна радионица у библиотеци" },
+  { id: "deca_2", url: `${import.meta.env.BASE_URL}deca_2.jpg`, width: 918, height: 1386, alt: "Активности са децом на Гочу" },
+  { id: "deca_3", url: `${import.meta.env.BASE_URL}deca_3.jpg`, width: 960, height: 720, alt: "Теренски рад у заштићеном подручју" }
 ];
 
 const collaborators = [
-  { id: "srbijasume", url: "/Srbijasume.png", width: 194, height: 128, link: "https://srbijasume.rs/", caption: "ЈП Србијашуме" },
-  { id: "VSI_KV", url: "/VSI_KV.jpg", width: 173, height: 44, link: "http://www.vsikv.com", caption: "Ветеринарски специјалистички институт Краљево" },
-  { id: "NP_Djerdap", url: "/NP_Djerdap.svg", width: 158, height: 146, link: "https://npdjerdap.rs/", caption: 'Национални парк "Ђердап"' },
-  { id: "biblioteka_kv", url: "/biblioteka_kv.jpg", width: 235, height: 55, link: "http://www.kv-biblio.org.rs", caption: 'Народна библиотека "Стефан Првовенчани" Краљево' },
-  { id: "sumarska_kv", url: "/sumarska_kv.png", width: 238, height: 48, link: "http://www.sumarska.edu.rs", caption: "Шумарска школа Краљево" },
-  { id: "poljoprivredna_kv", url: "/poljoprivredna_kv.png", width: 114, height: 131, link: "http://www.ratarica.edu.rs", caption: 'ПХШ "Др. Ђорђе Радић" Краљево' },
-  { id: "pmf_kg", url: "/pmf_kg.gif", width: 283, height: 60, link: "https://ibe.pmf.kg.ac.rs/", caption: "Институт за биологију и екологију ПМФ Крагујевац" },
-  { id: "sbd_stevan_jakovljevic", url: "/SBD_Stevan_Jakovljevic.png", width: 133, height: 134, link: "https://www.facebook.com/SBDKragujevac/?locale=sr_RS", caption: 'СБД "Стеван Јаковљевић"' },
-  { id: "eid_mladen_karaman", url: "/eid_mladen_karaman.jpg", width: 123, height: 138, link: "https://www.facebook.com/eidmladenkaraman/?locale=sr_RS", caption: 'Еколошко истраживачко друштво "Младен Караман"' }
+  { id: "srbijasume", url: `${import.meta.env.BASE_URL}Srbijasume.png`, width: 194, height: 128, link: "https://srbijasume.rs/", caption: "ЈП Србијашуме" },
+  { id: "VSI_KV", url: `${import.meta.env.BASE_URL}VSI_KV.jpg`, width: 173, height: 44, link: "http://www.vsikv.com", caption: "Ветеринарски специјалистички институт Краљево" },
+  { id: "NP_Djerdap", url: `${import.meta.env.BASE_URL}NP_Djerdap.svg`, width: 158, height: 146, link: "https://npdjerdap.rs/", caption: 'Национални парк "Ђердап"' },
+  { id: "biblioteka_kv", url: `${import.meta.env.BASE_URL}biblioteka_kv.jpg`, width: 235, height: 55, link: "http://www.kv-biblio.org.rs", caption: 'Народна библиотека "Стефан Првовенчани" Краљево' },
+  { id: "sumarska_kv", url: `${import.meta.env.BASE_URL}sumarska_kv.png`, width: 238, height: 48, link: "http://www.sumarska.edu.rs", caption: "Шумарска школа Краљево" },
+  { id: "poljoprivredna_kv", url: `${import.meta.env.BASE_URL}poljoprivredna_kv.png`, width: 114, height: 131, link: "http://www.ratarica.edu.rs", caption: 'ПХШ "Др. Ђорђе Радић" Краљево' },
+  { id: "pmf_kg", url: `${import.meta.env.BASE_URL}pmf_kg.gif`, width: 283, height: 60, link: "https://ibe.pmf.kg.ac.rs/", caption: "Институт за биологију и екологију ПМФ Крагујевац" },
+  { id: "sbd_stevan_jakovljevic", url: `${import.meta.env.BASE_URL}SBD_Stevan_Jakovljevic.png`, width: 133, height: 134, link: "https://www.facebook.com/SBDKragujevac/?locale=sr_RS", caption: 'СБД "Стеван Јаковљевић"' },
+  { id: "eid_mladen_karaman", url: `${import.meta.env.BASE_URL}eid_mladen_karaman.jpg`, width: 123, height: 138, link: "https://www.facebook.com/eidmladenkaraman/?locale=sr_RS", caption: 'Еколошко истраживачко друштво "Младен Караман"' }
 ];
 ---
 
@@ -48,7 +48,7 @@ const collaborators = [
 		</header>
 
 		<!-- Nature-themed Hero Banner -->
-		<div class="hero-container" id="heroBanner">
+		<div class="hero-container" id="heroBanner" style={`background-image: url('${import.meta.env.BASE_URL}trees.jpg');`}>
 			<div class="hero-overlay"></div>
 			
 			<!-- Leaf Particles -->
@@ -64,7 +64,7 @@ const collaborators = [
 				<div class="hero-logo-wrapper">
 					<img 
 						class="hero-logo" 
-						src="/logo.png" 
+						src={`${import.meta.env.BASE_URL}logo.png`} 
 						alt="КАПД Балкан Лого" 
 						width="390" 
 						height="184" 
@@ -131,7 +131,7 @@ const collaborators = [
 					<div class="image-container-1" style="justify-content: center;">
 						<img 
 							class="image3" 
-							src="/Natura_2.jpg" 
+							src={`${import.meta.env.BASE_URL}Natura_2.jpg`} 
 							alt="Натура 2000 Србија центар" 
 							width="1320" 
 							height="579" 
@@ -232,7 +232,7 @@ const collaborators = [
 			<div class="floating-contact" id="floatingContact">
 				<img 
 					class="phone" 
-					src="/phone.svg" 
+					src={`${import.meta.env.BASE_URL}phone.svg`} 
 					alt="Позовите нас" 
 					width="512" 
 					height="512" 
