@@ -38,13 +38,13 @@ const collaborators = [
 ---
 
 <Layout>
-	<main class="page_main">
+	<main class="page-main">
 		<!-- Sticky Header Navigation -->
 		<header>
-			<a href="#o_nama">О нама</a>
-			<a href="#natura_2000">Натура 2000</a>
-			<a href="#saradnici">Сарадници</a>
-			<a href="#kontakt">Контакт</a>
+			<a href="#about-us">О нама</a>
+			<a href="#natura-2000">Натура 2000</a>
+			<a href="#collaborators">Сарадници</a>
+			<a href="#contact">Контакт</a>
 		</header>
 
 		<!-- Nature-themed Hero Banner -->
@@ -73,7 +73,7 @@ const collaborators = [
 			</div>
 
 			<!-- Bouncing Scroll Down Arrow -->
-			<a href="#o_nama" class="scroll-indicator" aria-label="Скролујте до садржаја">
+			<a href="#about-us" class="scroll-indicator" aria-label="Скролујте до садржаја">
 				<span class="scroll-text">Истражи</span>
 				<svg class="scroll-arrow" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
 					<polyline points="6 9 12 15 18 9"></polyline>
@@ -85,7 +85,7 @@ const collaborators = [
 		<div class="main-content-container">
 			
 			<!-- About Us Section -->
-			<section id="o_nama">
+			<section id="about-us">
 				<div class="section-content">
 					<h2>Краљевско академско природњачко друштво Балкан</h2>
 					<p>
@@ -98,10 +98,10 @@ const collaborators = [
 						учесника, као и више од 20 теренских излета у заштићена подручја нашег града и шире.
 					</p>
 
-					<div class="image-container-1">
+					<div class="gallery-grid">
 						{aboutImages.map((img) => (
 							<img 
-								class="image" 
+								class="gallery-image" 
 								src={img.url} 
 								alt={img.alt} 
 								width={img.width} 
@@ -114,7 +114,7 @@ const collaborators = [
 			</section>
 
 			<!-- Natura 2000 Section -->
-			<section id="natura_2000">
+			<section id="natura-2000">
 				<div class="section-content">
 					<h2>&quot;Натура 2000 ресурсни центар Србије&quot;</h2>
 					<p>
@@ -128,9 +128,9 @@ const collaborators = [
 						Ветеринарски специјалистички институт Краљево.
 					</p>
 
-					<div class="image-container-1" style="justify-content: center;">
+					<div class="gallery-grid" style="justify-content: center;">
 						<img 
-							class="image3" 
+							class="banner-image" 
 							src={`${import.meta.env.BASE_URL}Natura_2.jpg`} 
 							alt="Натура 2000 Србија центар" 
 							width="1320" 
@@ -142,7 +142,7 @@ const collaborators = [
 			</section>
 
 			<!-- Collaborators Section -->
-			<section id="saradnici">
+			<section id="collaborators">
 				<div class="section-content">
 					<h2>Сарадници</h2>
 					<p>
@@ -156,13 +156,13 @@ const collaborators = [
 						Чемерно, Голија, Столови, Жељин, НП Ђердап, Пештер, Лазарев кањон, и осталим.
 					</p>
 
-					<div class="image-container-2">
+					<div class="collaborators-container">
 						{collaborators.map((partner) => (
-							<div class="image2_container">
+							<div class="collaborator-card">
 								<h4>{partner.caption}</h4>
 								<a href={partner.link} target="_blank" rel="noopener noreferrer">
 									<img 
-										class="image2" 
+										class="collaborator-logo" 
 										src={partner.url} 
 										alt={partner.caption} 
 										width={partner.width} 
@@ -177,11 +177,11 @@ const collaborators = [
 			</section>
 
 			<!-- Social Media Section -->
-			<section id="drustvene_mreze">
+			<section id="social-media">
 				<div class="section-content">
-					<div class="drustvene_mreze">
-						<h2>Балкан на друштвеним мрежама</h2>
-						
+					<h2>Балкан на друштвеним мрежама</h2>
+					
+					<div class="social-embeds-container">
 						<!-- YouTube Uploads Embed -->
 						<div class="iframe-wrapper">
 							<iframe 
@@ -198,7 +198,7 @@ const collaborators = [
 						<div class="fb-iframe-wrapper">
 							<iframe 
 								class="iframe" 
-								src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fkapdbalkankv&tabs=photos&width=500&height=200&small_header=false&adapt_container_width=false&hide_cover=false&show_facepile=false&appId=250907958354610" 
+								src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fkapdbalkankv&tabs=timeline&width=500&height=500&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId=250907958354610" 
 								title="Balkan Facebook Page"
 								allowfullscreen
 							></iframe>
@@ -210,7 +210,7 @@ const collaborators = [
 		</div>
 
 		<!-- Footer Contact Information -->
-		<div id="kontakt" class="main-contact-container">
+		<div id="contact" class="main-contact-container">
 			<div class="contact-container">
 				<p>
 					Телефон: <a href="tel:+381641688141">064 1688141</a>
@@ -296,7 +296,7 @@ const collaborators = [
 
 	if (lightbox && lightboxImg && lightboxCaption && lightboxClose && lightboxPrev && lightboxNext) {
 		// Select only gallery-relevant pictures
-		const images = Array.from(document.querySelectorAll('#o_nama .image, #natura_2000 .image3')) as HTMLImageElement[];
+		const images = Array.from(document.querySelectorAll('#about-us .gallery-image, #natura-2000 .banner-image')) as HTMLImageElement[];
 		let currentIndex = 0;
 
 		const openLightbox = (index: number) => {

@@ -107,7 +107,7 @@ header a:hover {
 }
 
 /* Main Content Page */
-.page_main {
+.page-main {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -235,13 +235,14 @@ header a:hover {
 /* Drift leaf particles */
 .leaf {
   position: absolute;
+  top: -50px;
   pointer-events: none;
   background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23228B22' opacity='0.7'><path d='M17,8C8,10 5.9,16.17 3.82,21.34L5.71,22L6.66,19.7C8.38,19.9 10.29,19.64 12.25,18.72L16.22,22.69L17.63,21.28L13.78,17.43C16.8,15 19,11.22 19,8V2H13C10.78,2 8,3.2 6,4.7L6,4.7C8.11,3.8 10.22,3.36 12.25,3.4C15.03,3.45 17,5.5 17,8Z'/></svg>");
   background-size: contain;
   background-repeat: no-repeat;
   z-index: 2;
   will-change: transform, opacity;
-  animation: driftDown linear infinite;
+  animation: driftDown linear infinite backwards;
 }
 
 @keyframes driftDown {
@@ -397,7 +398,7 @@ section p {
 }
 
 /* Image Containers & Gallery */
-.image-container-1 {
+.gallery-grid {
   width: 100%;
   display: flex;
   align-items: center;
@@ -407,7 +408,7 @@ section p {
   margin-top: 2rem;
 }
 
-.image {
+.gallery-image {
   width: calc(33.333% - 16px);
   height: 300px;
   object-fit: cover;
@@ -417,13 +418,13 @@ section p {
   filter: brightness(0.95);
 }
 
-.image:hover {
+.gallery-image:hover {
   transform: scale(1.03) translateY(-5px);
   filter: brightness(1.05);
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
 }
 
-.image3 {
+.banner-image {
   width: 60%;
   max-width: 800px;
   height: auto;
@@ -433,21 +434,26 @@ section p {
   filter: brightness(0.95);
 }
 
-.image3:hover {
+.banner-image:hover {
   transform: scale(1.015);
   filter: brightness(1.02);
 }
 
-/* Collaborators Grid */
-.image-container-2 {
+/* Collaborators Container */
+.collaborators-container {
   width: 100%;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
   gap: 40px;
   margin-top: 3rem;
 }
 
-.image2_container {
+.collaborator-card {
+  width: 280px;
+  max-width: 100%;
   background: white;
   padding: 1.5rem;
   border-radius: 12px;
@@ -461,12 +467,12 @@ section p {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.image2_container:hover {
+.collaborator-card:hover {
   transform: translateY(-5px);
   box-shadow: 0 8px 25px rgba(0,0,0,0.1);
 }
 
-.image2_container h4 {
+.collaborator-card h4 {
   font-family: 'Inter', sans-serif;
   font-size: 1rem;
   color: #444;
@@ -478,15 +484,15 @@ section p {
   justify-content: center;
 }
 
-.image2_container a {
+.collaborator-card a {
   display: flex;
-  width: 100%;
-  height: 120px;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
+  height: 120px;
+  width: 100%;
 }
 
-.image2 {
+.collaborator-logo {
   max-width: 90%;
   max-height: 100px;
   width: auto;
@@ -496,24 +502,27 @@ section p {
   transition: filter 0.3s ease, transform 0.3s ease;
 }
 
-.image2_container:hover .image2 {
+.collaborator-card:hover .collaborator-logo {
   filter: grayscale(0%) brightness(1);
   transform: scale(1.05);
 }
 
 /* Social Media Embeds */
-.drustvene_mreze {
+.social-embeds-container {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  justify-content: center;
   align-items: center;
+  flex-wrap: wrap;
   gap: 32px;
   width: 100%;
 }
 
-.iframe-wrapper {
+.iframe-wrapper,
+.fb-iframe-wrapper {
   position: relative;
   width: 100%;
-  max-width: 640px;
+  max-width: 500px;
   aspect-ratio: 16/10;
   border-radius: 12px;
   overflow: hidden;
@@ -524,16 +533,6 @@ section p {
   width: 100%;
   height: 100%;
   border: none;
-}
-
-.fb-iframe-wrapper {
-  position: relative;
-  width: 100%;
-  max-width: 500px;
-  height: 130px;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.15);
 }
 
 /* Contact Footer Container */
@@ -607,7 +606,7 @@ section p {
 
 /* Responsive Media Queries */
 @media only screen and (max-width: 900px) {
-  .image {
+  .gallery-image {
     width: calc(50% - 12px);
     height: 260px;
   }
@@ -622,21 +621,20 @@ section p {
     font-size: 1.8rem;
   }
   
-  .image {
+  .gallery-image {
     width: 100%;
     height: 240px;
   }
   
-  .image3 {
+  .banner-image {
     width: 100%;
   }
   
-  .image-container-2 {
-    grid-template-columns: 1fr;
+  .collaborators-container {
     gap: 24px;
   }
   
-  .image2_container {
+  .collaborator-card {
     height: 200px;
   }
   
