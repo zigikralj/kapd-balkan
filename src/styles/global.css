@@ -764,17 +764,18 @@ section p {
 /* Social Media Embeds */
 .social-embeds-container {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: center;
-  align-items: center;
-  gap: 40px;
+  align-items: stretch;
+  flex-wrap: wrap;
+  gap: 32px;
   width: 100%;
 }
 
 .iframe-wrapper {
   position: relative;
-  width: 100%;
-  max-width: 800px;
+  flex: 1 1 300px;
+  max-width: 500px;
   aspect-ratio: 16/9;
   border-radius: 12px;
   overflow: hidden;
@@ -783,28 +784,31 @@ section p {
 
 .fb-iframe-wrapper {
   position: relative;
-  width: 100%;
-  max-width: 800px;
-  aspect-ratio: 16/9;
-  min-height: 450px;
+  flex: 1 1 300px;
+  max-width: 500px;
+  height: 500px;
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 8px 25px rgba(0,0,0,0.15);
   background-color: #ffffff;
-  display: flex;
-  justify-content: center;
 }
 
 @media only screen and (max-width: 768px) {
-  .iframe-wrapper {
+  .social-embeds-container {
+    flex-direction: column;
+    align-items: center;
+  }
+  .iframe-wrapper,
+  .fb-iframe-wrapper {
+    flex: none;
+    width: 100%;
     max-width: 100%;
+  }
+  .iframe-wrapper {
     aspect-ratio: 16/9;
   }
   .fb-iframe-wrapper {
-    max-width: 100%;
-    aspect-ratio: auto;
     height: 500px;
-    min-height: auto;
   }
 }
 

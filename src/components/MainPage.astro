@@ -256,10 +256,11 @@ const collaborators = [
 						</div>
 
 						<!-- Facebook Page Embed -->
-						<div class="fb-iframe-wrapper">
+						<div class="fb-iframe-wrapper" id="fbWrapper">
 							<iframe 
+								id="fbIframe"
 								class="iframe" 
-								src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fkapdbalkankv&tabs=timeline&width=500&height=700&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId=250907958354610" 
+								src="about:blank"
 								title="Balkan Facebook Page"
 								allowfullscreen
 							></iframe>
@@ -356,6 +357,41 @@ const collaborators = [
 				toggleMenu(false);
 			}
 		});
+	}
+
+	// Dynamic Facebook Page Plugin URL updater (width & height)
+	const fbWrapper = document.getElementById('fbWrapper');
+	const fbIframe = document.getElementById('fbIframe') as HTMLIFrameElement | null;
+
+	if (fbWrapper && fbIframe) {
+		let currentWidth = 0;
+		let currentHeight = 0;
+		let resizeTimeout: ReturnType<typeof setTimeout>;
+
+		const updateFbIframeSrc = () => {
+			const width = Math.min(500, Math.max(180, Math.floor(fbWrapper.clientWidth)));
+			const height = Math.max(300, Math.floor(fbWrapper.clientHeight));
+
+			// Only update if dimensions actually changed significantly (>10px) to avoid redundant iframe reloads
+			if (Math.abs(width - currentWidth) < 10 && Math.abs(height - currentHeight) < 10) {
+				return;
+			}
+
+			currentWidth = width;
+			currentHeight = height;
+
+			fbIframe.src = `https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fkapdbalkankv&tabs=timeline&width=${width}&height=${height}&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId=250907958354610`;
+		};
+
+		// Initial update on page mount
+		updateFbIframeSrc();
+
+		// Debounced ResizeObserver for responsive width & height updates
+		const observer = new ResizeObserver(() => {
+			clearTimeout(resizeTimeout);
+			resizeTimeout = setTimeout(updateFbIframeSrc, 300);
+		});
+		observer.observe(fbWrapper);
 	}
 
 	// 3D Parallax forest movement based on cursor
