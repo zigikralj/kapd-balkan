@@ -49,64 +49,88 @@ const collaborators = [
 	<main class="page-main">
 		<!-- Sticky Header Navigation -->
 		<header>
-			<a href="#about-us">{t.nav.about}</a>
-			<a href="#natura-2000">{t.nav.natura}</a>
-			<a href="#collaborators">{t.nav.collaborators}</a>
-			<a href="#contact">{t.nav.contact}</a>
-			<!-- Language Dropdown -->
-			<div class="lang-dropdown">
-				<button class="lang-dropdown-trigger" aria-label="Изаберите језик / Select language">
-					{lang === 'sr' ? (
-						<>
-							<svg class="flag-icon" viewBox="0 0 3 2" xmlns="http://www.w3.org/2000/svg">
-								<rect width="3" height="0.667" fill="#C6363C"/>
-								<rect y="0.667" width="3" height="0.667" fill="#0C4076"/>
-								<rect y="1.333" width="3" height="0.667" fill="#FFFFFF"/>
+			<div class="header-content">
+				<nav class="desktop-nav">
+					<a href="#about-us">{t.nav.about}</a>
+					<a href="#natura-2000">{t.nav.natura}</a>
+					<a href="#collaborators">{t.nav.collaborators}</a>
+					<a href="#contact">{t.nav.contact}</a>
+				</nav>
+
+				<div class="header-right">
+					<!-- Language Dropdown -->
+					<div class="lang-dropdown">
+						<button class="lang-dropdown-trigger" aria-label="Изаберите језик / Select language">
+							{lang === 'sr' ? (
+								<>
+									<svg class="flag-icon" viewBox="0 0 3 2" xmlns="http://www.w3.org/2000/svg">
+										<rect width="3" height="0.667" fill="#C6363C"/>
+										<rect y="0.667" width="3" height="0.667" fill="#0C4076"/>
+										<rect y="1.333" width="3" height="0.667" fill="#FFFFFF"/>
+									</svg>
+									<span>Srpski</span>
+								</>
+							) : (
+								<>
+									<svg class="flag-icon" viewBox="0 0 60 30" xmlns="http://www.w3.org/2000/svg">
+										<clipPath id="s-trig">
+											<path d="M0,0 v30 h60 v-30 z"/>
+										</clipPath>
+										<path d="M0,0 v30 h60 v-30 z" fill="#012169"/>
+										<path d="M0,0 L60,30 M60,0 L0,30" stroke="#fff" stroke-width="6"/>
+										<path d="M0,0 L60,30 M60,0 L0,30" stroke="#C8102E" stroke-width="4" clip-path="url(#s-trig)"/>
+										<path d="M30,0 v30 M0,15 h60" stroke="#fff" stroke-width="10"/>
+										<path d="M30,0 v30 M0,15 h60" stroke="#C8102E" stroke-width="6"/>
+									</svg>
+									<span>English</span>
+								</>
+							)}
+							<svg class="dropdown-arrow" viewBox="0 0 24 24" width="16" height="16" xmlns="http://www.w3.org/2000/svg">
+								<path d="M7 10l5 5 5-5z" fill="currentColor"/>
 							</svg>
-							<span>Srpski</span>
-						</>
-					) : (
-						<>
-							<svg class="flag-icon" viewBox="0 0 60 30" xmlns="http://www.w3.org/2000/svg">
-								<clipPath id="s-trig">
-									<path d="M0,0 v30 h60 v-30 z"/>
-								</clipPath>
-								<path d="M0,0 v30 h60 v-30 z" fill="#012169"/>
-								<path d="M0,0 L60,30 M60,0 L0,30" stroke="#fff" stroke-width="6"/>
-								<path d="M0,0 L60,30 M60,0 L0,30" stroke="#C8102E" stroke-width="4" clip-path="url(#s-trig)"/>
-								<path d="M30,0 v30 M0,15 h60" stroke="#fff" stroke-width="10"/>
-								<path d="M30,0 v30 M0,15 h60" stroke="#C8102E" stroke-width="6"/>
-							</svg>
-							<span>English</span>
-						</>
-					)}
-					<svg class="dropdown-arrow" viewBox="0 0 24 24" width="16" height="16" xmlns="http://www.w3.org/2000/svg">
-						<path d="M7 10l5 5 5-5z" fill="currentColor"/>
-					</svg>
-				</button>
-				<div class="lang-dropdown-menu">
-					<a href={`${import.meta.env.BASE_URL}`} class={`lang-dropdown-item ${lang === 'sr' ? 'active' : ''}`}>
-						<svg class="flag-icon" viewBox="0 0 3 2" xmlns="http://www.w3.org/2000/svg">
-							<rect width="3" height="0.667" fill="#C6363C"/>
-							<rect y="0.667" width="3" height="0.667" fill="#0C4076"/>
-							<rect y="1.333" width="3" height="0.667" fill="#FFFFFF"/>
-						</svg>
-						<span>Srpski</span>
-					</a>
-					<a href={`${import.meta.env.BASE_URL}en/`} class={`lang-dropdown-item ${lang === 'en' ? 'active' : ''}`}>
-						<svg class="flag-icon" viewBox="0 0 60 30" xmlns="http://www.w3.org/2000/svg">
-							<clipPath id="s-opt">
-								<path d="M0,0 v30 h60 v-30 z"/>
-							</clipPath>
-							<path d="M0,0 v30 h60 v-30 z" fill="#012169"/>
-							<path d="M0,0 L60,30 M60,0 L0,30" stroke="#fff" stroke-width="6"/>
-							<path d="M0,0 L60,30 M60,0 L0,30" stroke="#C8102E" stroke-width="4" clip-path="url(#s-opt)"/>
-							<path d="M30,0 v30 M0,15 h60" stroke="#fff" stroke-width="10"/>
-							<path d="M30,0 v30 M0,15 h60" stroke="#C8102E" stroke-width="6"/>
-						</svg>
-						<span>English</span>
-					</a>
+						</button>
+						<div class="lang-dropdown-menu">
+							<a href={`${import.meta.env.BASE_URL}`} class={`lang-dropdown-item ${lang === 'sr' ? 'active' : ''}`}>
+								<svg class="flag-icon" viewBox="0 0 3 2" xmlns="http://www.w3.org/2000/svg">
+									<rect width="3" height="0.667" fill="#C6363C"/>
+									<rect y="0.667" width="3" height="0.667" fill="#0C4076"/>
+									<rect y="1.333" width="3" height="0.667" fill="#FFFFFF"/>
+								</svg>
+								<span>Srpski</span>
+							</a>
+							<a href={`${import.meta.env.BASE_URL}en/`} class={`lang-dropdown-item ${lang === 'en' ? 'active' : ''}`}>
+								<svg class="flag-icon" viewBox="0 0 60 30" xmlns="http://www.w3.org/2000/svg">
+									<clipPath id="s-opt">
+										<path d="M0,0 v30 h60 v-30 z"/>
+									</clipPath>
+									<path d="M0,0 v30 h60 v-30 z" fill="#012169"/>
+									<path d="M0,0 L60,30 M60,0 L0,30" stroke="#fff" stroke-width="6"/>
+									<path d="M0,0 L60,30 M60,0 L0,30" stroke="#C8102E" stroke-width="4" clip-path="url(#s-opt)"/>
+									<path d="M30,0 v30 M0,15 h60" stroke="#fff" stroke-width="10"/>
+									<path d="M30,0 v30 M0,15 h60" stroke="#C8102E" stroke-width="6"/>
+								</svg>
+								<span>English</span>
+							</a>
+						</div>
+					</div>
+
+					<!-- Burger Menu Button for Mobile -->
+					<button class="burger-menu-btn" id="burgerMenuBtn" aria-label="Meni / Menu" aria-expanded="false" aria-controls="mobileNav">
+						<span class="burger-bar"></span>
+						<span class="burger-bar"></span>
+						<span class="burger-bar"></span>
+					</button>
 				</div>
+			</div>
+
+			<!-- Mobile Navigation Drawer -->
+			<div class="mobile-nav-drawer" id="mobileNav" aria-hidden="true">
+				<nav class="mobile-nav-links">
+					<a href="#about-us">{t.nav.about}</a>
+					<a href="#natura-2000">{t.nav.natura}</a>
+					<a href="#collaborators">{t.nav.collaborators}</a>
+					<a href="#contact">{t.nav.contact}</a>
+				</nav>
 			</div>
 		</header>
 
@@ -235,7 +259,7 @@ const collaborators = [
 						<div class="fb-iframe-wrapper">
 							<iframe 
 								class="iframe" 
-								src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fkapdbalkankv&tabs=timeline&width=500&height=500&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId=250907958354610" 
+								src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fkapdbalkankv&tabs=timeline&width=500&height=700&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId=250907958354610" 
 								title="Balkan Facebook Page"
 								allowfullscreen
 							></iframe>
@@ -296,6 +320,44 @@ const collaborators = [
 
 <!-- Client-side Interactive Animations Script -->
 <script>
+	// Mobile Navigation Burger Menu
+	const burgerMenuBtn = document.getElementById('burgerMenuBtn');
+	const mobileNav = document.getElementById('mobileNav');
+	const mobileNavLinks = document.querySelectorAll('.mobile-nav-links a');
+
+	if (burgerMenuBtn && mobileNav) {
+		const toggleMenu = (open?: boolean) => {
+			const isOpen = open !== undefined ? open : !mobileNav.classList.contains('open');
+			burgerMenuBtn.classList.toggle('open', isOpen);
+			mobileNav.classList.toggle('open', isOpen);
+			burgerMenuBtn.setAttribute('aria-expanded', String(isOpen));
+			mobileNav.setAttribute('aria-hidden', String(!isOpen));
+		};
+
+		burgerMenuBtn.addEventListener('click', (e) => {
+			e.stopPropagation();
+			toggleMenu();
+		});
+
+		mobileNavLinks.forEach((link) => {
+			link.addEventListener('click', () => {
+				toggleMenu(false);
+			});
+		});
+
+		document.addEventListener('click', (e) => {
+			if (e.target && !mobileNav.contains(e.target as Node) && !burgerMenuBtn.contains(e.target as Node)) {
+				toggleMenu(false);
+			}
+		});
+
+		document.addEventListener('keydown', (e) => {
+			if (e.key === 'Escape' && mobileNav.classList.contains('open')) {
+				toggleMenu(false);
+			}
+		});
+	}
+
 	// 3D Parallax forest movement based on cursor
 	const hero = document.getElementById('heroBanner');
 	if (hero && window.innerWidth > 768) {
